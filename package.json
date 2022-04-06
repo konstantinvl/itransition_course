@@ -1,0 +1,25 @@
+{
+  "name": "itransition_course",
+  "version": "1.0.0",
+  "description": "Repository of Konstantin Vlasenko for Itransition course",
+  "main": "rps.js",
+  "type": "module",
+  "dependencies": {
+    "random-number-csprng": "^1.0.2",
+    "keygenerator": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konstantinvl/itransition_course.git"
+  },
+  "author": "KV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konstantinvl/itransition_course/issues"
+  },
+  "homepage": "https://github.com/konstantinvl/itransition_course#readme"
+}
