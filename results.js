@@ -24,7 +24,7 @@ export default class Results {
     });
   }
 
-  areYaWinningSon(userTurn, compTurn) {
+  checkResults(userTurn, compTurn) {
     if (!this.options[userTurn - STEP]) {
       return false;
     }

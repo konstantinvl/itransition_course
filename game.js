@@ -77,7 +77,7 @@ export default class Game {
         break;
       }
       default:
-        this.resolveResults(this.results.areYaWinningSon(answer, this.compTurn));
+        this.resolveResults(this.results.checkResults(answer, this.compTurn));
     }
   }
 
