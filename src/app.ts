@@ -13,7 +13,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const indexPath = path.join(__dirname, '../../reactApp/build/');
+const indexPath = path.join(__dirname, '../reactApp/build/');
 const PORT = process.env.PORT || 4050;
 
 app.use('/', express.static(indexPath));
