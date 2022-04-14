@@ -1,20 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserList } from '../../../common/interfaces';
+import { User, UserList } from '../../../common/interfaces';
 
 const initialState: UserList = {
-  userlist: [
-    { id: '1', login: 'first', blocked: false },
-    { id: '2', login: 'second', blocked: false },
-    { id: '3', login: 'third', blocked: false },
-  ],
+  userlist: [],
 };
 
 export const userListSlice = createSlice({
-  name: 'user',
+  name: 'userlist',
   initialState,
   reducers: {
-    setUserList: (state, action: PayloadAction<UserList>) => {
-      return { ...action.payload };
+    setUserList: (state, action: PayloadAction<User[]>) => {
+      return { userlist: action.payload };
     },
   },
 });

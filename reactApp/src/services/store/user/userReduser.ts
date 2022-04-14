@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../../common/interfaces';
 
 const initialState: User = {
-  id: '',
+  id: 0,
   login: '',
   blocked: true,
 };

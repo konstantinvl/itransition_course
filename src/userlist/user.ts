@@ -8,7 +8,7 @@ import { Model } from 'sequelize-typescript';
 import sequelize from '../app';
 import bcrypt from 'bcrypt';
 
-export interface NewUserInterface {
+export interface AuthUserInterface {
   login: string;
   password: string;
 }

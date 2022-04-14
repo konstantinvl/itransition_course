@@ -5,10 +5,11 @@ import {
   deleteUserById,
   getUserById,
   getUserlist,
+  loginUser,
   setNewUser,
   unblockUserById,
 } from './repository';
-import { NewUserInterface } from './user';
+import { AuthUserInterface, UserInterface } from './user';
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -30,23 +31,22 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+router.post('/delete', async (req, res) => {
   const deleteData = req.body as number[];
-  deleteData.forEach((id) => deleteUserById(id));
   try {
-    const data = await getUserlist();
-    return res.json(data);
+    await deleteUserById(deleteData);
+    return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);
   }
 });
 
 router.post('/block', async (req, res) => {
+  console.log(req.body);
   const blockData = req.body as number[];
-  blockData.forEach((id) => blockUserById(id));
   try {
-    const data = await getUserlist();
-    return res.json(data);
+    await blockUserById(blockData);
+    return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);
   }
@@ -54,10 +54,9 @@ router.post('/block', async (req, res) => {
 
 router.post('/unblock', async (req, res) => {
   const blockData = req.body as number[];
-  blockData.forEach((id) => unblockUserById(id));
   try {
-    const data = await getUserlist();
-    return res.json(data);
+    await unblockUserById(blockData);
+    return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);
   }
@@ -65,25 +64,23 @@ router.post('/unblock', async (req, res) => {
 
 router.post('/newuser', async (req, res) => {
   try {
-    const newUser = await setNewUser(req.body as NewUserInterface);
-    return res.json(newUser);
+    await setNewUser(req.body as AuthUserInterface);
+    return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);
   }
 });
 
-// router.put('/', async (req, res) => {
-//   const data = req.body as Item;
-//   const category = await getCategoryById(data.categoryId);
-//   if (!category) {
-//     return res.status(StatusCodes.BadRequest).send('Invalid category ID');
-//   }
-//   try {
-//     const newData = await updateItem(data);
-//     return res.json(newData);
-//   } catch (e) {
-//     return res.status(StatusCodes.BadRequest).send(e);
-//   }
-// });
+router.post('/login', async (req, res) => {
+  try {
+    const userToLogin: UserInterface = await loginUser(
+      req.body as AuthUserInterface
+    );
+    console.log(userToLogin);
+    return res.json(userToLogin);
+  } catch (e) {
+    return res.status(StatusCodes.BadRequest).send(e);
+  }
+});
 
 export default router;

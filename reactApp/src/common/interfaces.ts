@@ -9,11 +9,21 @@ export interface AuthFormProps {
 }
 
 export interface User {
-  id: string;
+  id: number;
   login: string;
   blocked: boolean;
 }
 
 export interface UserList {
   userlist: User[];
+}
+
+export interface AuthUserInterface {
+  login: string;
+  password: string;
+}
+
+export interface UserListOperationsReqestInterface {
+  selectedId: number[];
+  userId: number;
 }

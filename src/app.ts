@@ -4,22 +4,22 @@ import express from 'express';
 import mysql from 'mysql2';
 import { DataTypes, Sequelize } from 'sequelize';
 import bcrypt from 'bcrypt';
+import cors from 'cors';
 
-import items from './item/router';
 import userlist from './userlist/router';
 import { UserModel } from './userlist/user';
 
 const app = express();
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const indexPath = path.join(__dirname, '../reactApp/build/');
+const indexPath = path.join(__dirname, '../reactApp/app/');
 const PORT = process.env.PORT || 4050;
 
 app.use('/', express.static(indexPath));
 
 app.use('/api/userlist', userlist);
-app.use('/api/items', items);
 
 const sequelize = new Sequelize(
   'heroku_4f8080834ef325f',

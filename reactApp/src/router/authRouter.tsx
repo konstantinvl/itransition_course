@@ -1,41 +1,43 @@
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Auth from '../components/authentification/authentification';
-import AuthForm from '../components/authentification/authForm';
-import { useAppDispatch } from '../services/store/hooks';
-import { setUser } from '../services/store/user/userActions';
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Auth from "../components/authentification/authentification";
+import AuthForm from "../components/authentification/authForm";
+import { useAppDispatch } from "../services/store/hooks";
+import {
+  requestLoginUser,
+  requestSignInUser,
+} from "../services/store/user/userActions";
 
 export default function AuthRouter() {
   const dispatch = useAppDispatch();
   return (
     <Routes>
-      <Route path='/' element={<Auth />}>
-        <Route index element={<Navigate to='login' />} />
+      <Route path="/" element={<Auth />}>
+        <Route index element={<Navigate to="login" />} />
         <Route
-          path='login'
+          path="login"
           element={
             <AuthForm
-              title='Login'
+              title="Login"
               callback={(values) => {
-                console.log(values);
-                dispatch(setUser({ id: '1', login: values.login, blocked: false }));
+                dispatch(requestLoginUser(values));
               }}
             />
           }
         />
         <Route
-          path='signin'
+          path="signin"
           element={
             <AuthForm
-              title='SignIn'
+              title="SignIn"
               callback={(values) => {
                 console.log(values);
-                dispatch(setUser({ id: '1', login: values.login, blocked: false }));
+                dispatch(requestSignInUser(values));
               }}
             />
           }
         />
-        <Route path='*' element={<Navigate to='login' />} />
+        <Route path="*" element={<Navigate to="login" />} />
       </Route>
     </Routes>
   );
