@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 
+
+
 # Logs
 logs
 *.log
@@ -29,3 +31,5 @@ node_modules/
 
 # Build results
 dist
+
+src/userlist
