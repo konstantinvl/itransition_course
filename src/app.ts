@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const indexPath = path.join(__dirname, '../reactApp/app/');
-const PORT = 4050;
+const PORT = process.env.PORT || 4050;
 
 app.use('/', express.static(indexPath));
 
