@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import User from '../app';
+import { User } from '../app';
 import { AuthUserInterface, UserInterface, UserModel } from './user';
 
 async function findUserbyLogin(login: string): Promise<false | UserModel> {
@@ -19,8 +19,9 @@ export async function getUserById(id: number) {
   console.log('byid', id);
   const user = User.findByPk(id)
     .then((user) => {
-      if (!user) return { id: 0, login: '', blocked: true };
-      return { id: user.id, login: user.login, blocked: user.blocked };
+      if (!user) return { id: 0, login: '', role: '' };
+      const { id, login, role } = user;
+      return { id, login, role };
     })
     .catch((e) => {
       throw Error(e);
@@ -33,26 +34,27 @@ export async function deleteUserById(selectedId: number[]) {
   return Promise.resolve();
 }
 
-export async function blockUserById(selectedId: number[]) {
-  await User.update({ blocked: true }, { where: { id: selectedId } });
-  return Promise.resolve();
-}
+// export async function blockUserById(selectedId: number[]) {
+//   await User.update({ blocked: true }, { where: { id: selectedId } });
+//   return Promise.resolve();
+// }
 
-export async function unblockUserById(selectedId: number[]) {
-  await User.update({ blocked: false }, { where: { id: selectedId } });
-  return Promise.resolve();
-}
+// export async function unblockUserById(selectedId: number[]) {
+//   await User.update({ blocked: false }, { where: { id: selectedId } });
+//   return Promise.resolve();
+// }
 
 export async function setNewUser(user: AuthUserInterface) {
-  const { login, password } = user;
+  const { login, password, role } = user;
   const isUser = await findUserbyLogin(login);
   if (isUser)
     return Promise.reject(
       new Error(`User with login ${login} already exists.`)
     );
   const newUser = await User.create({
-    login: login,
-    password: password,
+    login,
+    password,
+    role: role ? role : 'user',
   }).then((res) => res);
   return Promise.resolve<UserInterface>({
     ...newUser,
@@ -62,7 +64,7 @@ export async function setNewUser(user: AuthUserInterface) {
 export async function getUserlist() {
   console.log('userlist');
   const userlist = await User.findAll({
-    attributes: ['id', 'login', 'blocked'],
+    attributes: ['id', 'login', 'role'],
   }).then((res) => res);
   console.log(userlist);
   return Promise.resolve<UserInterface[]>(userlist);
@@ -76,7 +78,7 @@ export async function loginUser(user: AuthUserInterface) {
     return Promise.resolve<UserInterface>({
       id: userToLogin.id,
       login: userToLogin.login,
-      blocked: userToLogin.blocked,
+      role: userToLogin.role,
     });
   }
   return Promise.reject(new Error(`Wrong validation data`));

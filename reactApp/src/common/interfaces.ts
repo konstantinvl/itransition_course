@@ -8,11 +8,11 @@ export interface AuthFormProps {
   callback: (value: { login: string; password: string }) => void;
 }
 
-export interface User {
-  id: number;
-  login: string;
-  blocked: boolean;
-}
+// export interface User {
+//   id: number;
+//   login: string;
+//   blocked: boolean;
+// }
 
 export interface UserList {
   userlist: User[];
@@ -26,4 +26,76 @@ export interface AuthUserInterface {
 export interface UserListOperationsReqestInterface {
   selectedId: number[];
   userId: number;
+}
+
+//new interfaces
+
+export interface LanguageInterface {
+  title: string;
+  value: string;
+}
+
+export interface User {
+  id: number;
+  login: string;
+  role: string;
+}
+
+export interface ItemInterface {
+  userId: number;
+  collectionId: number;
+  id: number;
+  name: string;
+  textField1Value: string;
+  textField2Value: string;
+  textField3Value: string;
+  numberField1Value: number;
+  numberField2Value: number;
+  numberField3Value: number;
+}
+
+export interface ItemState {
+  items: ItemInterface[];
+}
+export interface CollectionState {
+  collections: CollectionInterface[];
+}
+
+export interface ItemCreateInterface {
+  userId: number;
+  collectionId: number;
+  name: string;
+  textField1Value?: string;
+  textField2Value?: string;
+  textField3Value?: string;
+  numberField1Value?: number;
+  numberField2Value?: number;
+  numberField3Value?: number;
+}
+
+export interface CollectionInterface {
+  userId: number;
+  type: string;
+  name: string;
+  id: number;
+  description: string;
+  textField1Name: string;
+  textField2Name: string;
+  textField3Name: string;
+  numberField1Name: string;
+  numberField2Name: string;
+  numberField3Name: string;
+}
+
+export interface CollectionCreateInterface {
+  userId: number;
+  type: 'books' | 'alcohol' | 'boardGames';
+  name: string;
+  description: string;
+  textField1Name?: string;
+  textField2Name?: string;
+  textField3Name?: string;
+  numberField1Name?: string;
+  numberField2Name?: string;
+  numberField3Name?: string;
 }

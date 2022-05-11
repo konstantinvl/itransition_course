@@ -4,7 +4,7 @@ import { User } from '../../../common/interfaces';
 const initialState: User = {
   id: 0,
   login: '',
-  blocked: true,
+  role: '',
 };
 
 export const userSlice = createSlice({

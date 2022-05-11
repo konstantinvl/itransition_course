@@ -1,7 +1,9 @@
+import { TextField } from "formik-mui";
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 import { AuthFormProps } from "../../common/interfaces";
+import { Stack } from "@mui/material";
 
 export const AuthSchema = Yup.object().shape({
   login: Yup.string().required(),
@@ -21,27 +23,29 @@ export default function AuthForm(props: AuthFormProps) {
       validationSchema={AuthSchema}
     >
       <Form className="p-2">
-        <legend>{title}</legend>
-        <div className="mb-3">
-          <label htmlFor="login" className="form-label">
-            Login:
-          </label>
-          <Field type="text" id="login" name="login" className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password:
-          </label>
+        <Stack spacing={2}>
+          <legend>{title}</legend>
+
+          <Field
+            type="text"
+            id="login"
+            name="login"
+            label="Login"
+            component={TextField}
+          />
+
           <Field
             type="password"
             id="password"
             name="password"
-            className="form-control"
+            label="Password"
+            component={TextField}
           />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </Stack>
       </Form>
     </Formik>
   );

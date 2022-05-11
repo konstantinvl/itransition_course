@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { StatusCodes } from '../common';
 import {
-  blockUserById,
+  // blockUserById,
   deleteUserById,
   getUserById,
   getUserlist,
   loginUser,
   setNewUser,
-  unblockUserById,
+  // unblockUserById,
 } from './repository';
 import { AuthUserInterface, UserInterface } from './user';
 const router = Router();
@@ -41,26 +41,26 @@ router.post('/delete', async (req, res) => {
   }
 });
 
-router.post('/block', async (req, res) => {
-  console.log(req.body);
-  const blockData = req.body as number[];
-  try {
-    await blockUserById(blockData);
-    return res.status(StatusCodes.Ok).send('ok');
-  } catch (e) {
-    return res.status(StatusCodes.BadRequest).send(e);
-  }
-});
+// router.post('/block', async (req, res) => {
+//   console.log(req.body);
+//   const blockData = req.body as number[];
+//   try {
+//     await blockUserById(blockData);
+//     return res.status(StatusCodes.Ok).send('ok');
+//   } catch (e) {
+//     return res.status(StatusCodes.BadRequest).send(e);
+//   }
+// });
 
-router.post('/unblock', async (req, res) => {
-  const blockData = req.body as number[];
-  try {
-    await unblockUserById(blockData);
-    return res.status(StatusCodes.Ok).send('ok');
-  } catch (e) {
-    return res.status(StatusCodes.BadRequest).send(e);
-  }
-});
+// router.post('/unblock', async (req, res) => {
+//   const blockData = req.body as number[];
+//   try {
+//     await unblockUserById(blockData);
+//     return res.status(StatusCodes.Ok).send('ok');
+//   } catch (e) {
+//     return res.status(StatusCodes.BadRequest).send(e);
+//   }
+// });
 
 router.post('/newuser', async (req, res) => {
   try {

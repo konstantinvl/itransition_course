@@ -1,6 +1,5 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import Auth from "../components/authentification/authentification";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import AuthForm from "../components/authentification/authForm";
 import { useAppDispatch } from "../services/store/hooks";
 import {
@@ -12,7 +11,14 @@ export default function AuthRouter() {
   const dispatch = useAppDispatch();
   return (
     <Routes>
-      <Route path="/" element={<Auth />}>
+      <Route
+        path="/"
+        element={
+          <>
+            <Outlet />
+          </>
+        }
+      >
         <Route index element={<Navigate to="login" />} />
         <Route
           path="login"

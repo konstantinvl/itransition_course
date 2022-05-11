@@ -10,12 +10,10 @@ export function* loginUser(action: PayloadAction<AuthUserInterface>) {
   try {
     const user: User = yield call(login, action.payload);
 
-    if (!user.blocked) {
-      yield put(setUser(user));
-      const userlist: User[] = yield call(getUserList);
+    yield put(setUser(user));
+    const userlist: User[] = yield call(getUserList);
 
-      yield put(setUserList(userlist));
-    }
+    yield put(setUserList(userlist));
   } catch (e) {
     yield console.log((e as Error).message);
   }

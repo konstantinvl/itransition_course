@@ -30,11 +30,7 @@ export default function UserlistUser(props: {
           }}
         />
       </div>
-      <div
-        className={user.blocked ? "text-decoration-line-through col" : "col"}
-      >
-        {user.login}
-      </div>
+      <div className={"col"}>{user.login}</div>
     </div>
   );
 }

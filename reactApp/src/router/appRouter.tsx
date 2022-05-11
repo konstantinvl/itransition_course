@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../services/store/hooks';
-import AuthRouter from './authRouter';
-import ViewRouter from './viewRouter';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MainWrapper from "../components/pageWrappers/mainWrapper";
+import MainPage from "../pages/main";
+
+import AuthRouter from "./authRouter";
+import UserRouter from "./userRouter";
 
 export default function AppRouter(): JSX.Element {
-  const { user } = useAppSelector((store) => store);
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate('/');
-  }, [user]);
   return (
     <Routes>
-      <Route index element={<Navigate to={user.login ? '/view' : '/auth'} />} />
-      <Route path='/auth/*' element={<AuthRouter />} />
-      <Route path='/view/*' element={<ViewRouter />} />
+      <Route path="/" element={<MainWrapper />}>
+        <Route index element={<MainPage />} />
+        <Route path="/auth/*" element={<AuthRouter />} />
+        <Route path="/:userId/*" element={<UserRouter />} />
+      </Route>
     </Routes>
   );
 }
