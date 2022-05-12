@@ -2,7 +2,12 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { call, put } from 'redux-saga/effects';
 import { ItemInterface, ItemCreateInterface } from '../../../common/interfaces';
-import { changeItem, getItems, newItem } from '../../axios/requests';
+import {
+  changeItem,
+  deleteItem,
+  getItems,
+  newItem,
+} from '../../axios/requests';
 
 import { requestItems, setItems } from './itemsActions';
 
@@ -28,6 +33,15 @@ export function* itemSet(action: PayloadAction<ItemCreateInterface>) {
 export function* itemChange(action: PayloadAction<ItemInterface>) {
   try {
     yield call(changeItem, action.payload);
+    yield put(requestItems());
+  } catch (e) {
+    yield console.log((e as Error).message);
+  }
+}
+
+export function* itemDelete(action: PayloadAction<number>) {
+  try {
+    yield call(deleteItem, action.payload);
     yield put(requestItems());
   } catch (e) {
     yield console.log((e as Error).message);

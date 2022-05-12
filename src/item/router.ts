@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { StatusCodes } from '../common/status-codes';
 import { ItemCreateInterface, ItemInterface } from './item';
-import { changeItem, createItem, getAllItems } from './repository';
+import { changeItem, createItem, deleteItem, getAllItems } from './repository';
 
 const router = Router();
 
@@ -26,6 +26,15 @@ router.post('/', async (req, res) => {
 router.post('/change', async (req, res) => {
   try {
     await changeItem(req.body as ItemInterface);
+    return res.status(StatusCodes.Ok).send('ok');
+  } catch (e) {
+    return res.status(StatusCodes.BadRequest).send(e);
+  }
+});
+
+router.post('/delete/:id', async (req, res) => {
+  try {
+    await deleteItem(Number(req.params.id));
     return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);

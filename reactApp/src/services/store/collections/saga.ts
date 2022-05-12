@@ -7,6 +7,7 @@ import {
 } from '../../../common/interfaces';
 import {
   changeCollection,
+  deleteCollection,
   getCollections,
   newCollection,
 } from '../../axios/requests';
@@ -26,7 +27,6 @@ export function* collectionSet(
   action: PayloadAction<CollectionCreateInterface>
 ) {
   try {
-    console.log(action.payload);
     yield call(newCollection, action.payload);
     yield put(requestCollections());
   } catch (e) {
@@ -36,8 +36,16 @@ export function* collectionSet(
 
 export function* collectionChange(action: PayloadAction<CollectionInterface>) {
   try {
-    console.log(action.payload);
     yield call(changeCollection, action.payload);
+    yield put(requestCollections());
+  } catch (e) {
+    yield console.log((e as Error).message);
+  }
+}
+
+export function* collectionDelete(action: PayloadAction<number>) {
+  try {
+    yield call(deleteCollection, action.payload);
     yield put(requestCollections());
   } catch (e) {
     yield console.log((e as Error).message);

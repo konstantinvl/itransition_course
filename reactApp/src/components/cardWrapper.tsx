@@ -16,7 +16,6 @@ export default function CardWrapper(props: {
         border: `1px solid ${grey[100]}`,
         width: 250,
         maxWidth: 250,
-        minHeight: 350,
         p: 2,
         m: 1,
         boxShadow: 2,

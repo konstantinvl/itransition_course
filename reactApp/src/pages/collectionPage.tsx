@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { CollectionInterface } from "../common/interfaces";
 import CreateNew from "../components/createNew";
+import ChangeableItem from "../components/item/changeableItem";
 import Item from "../components/item/item";
 
 import { selectCollectionByID } from "../services/store/collections/colectionsReduser";
@@ -12,7 +13,6 @@ import { selectItemsByCollectionID } from "../services/store/items/itemsReduser"
 export default function CollectionPage() {
   const collectionId = Number(useParams().collectionId);
   const state = useAppSelector((state) => state);
-  const { user } = state;
   const items = selectItemsByCollectionID(state, collectionId);
   const collection = selectCollectionByID(
     state,
@@ -30,7 +30,7 @@ export default function CollectionPage() {
         }}
       >
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <ChangeableItem item={item} key={item.id} />
         ))}
         <CreateNew text="createItem" path={`./newItem/${collectionId}`} />
       </Box>

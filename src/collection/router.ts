@@ -4,6 +4,7 @@ import { CollectionCreateInterface, CollectionInterface } from './collection';
 import {
   changeCollection,
   createCollection,
+  deleteCollection,
   getAllCollections,
 } from './repository';
 
@@ -30,6 +31,15 @@ router.post('/', async (req, res) => {
 router.post('/change', async (req, res) => {
   try {
     await changeCollection(req.body as CollectionInterface);
+    return res.status(StatusCodes.Ok).send('ok');
+  } catch (e) {
+    return res.status(StatusCodes.BadRequest).send(e);
+  }
+});
+
+router.post('/delete/:id', async (req, res) => {
+  try {
+    await deleteCollection(Number(req.params.id));
     return res.status(StatusCodes.Ok).send('ok');
   } catch (e) {
     return res.status(StatusCodes.BadRequest).send(e);

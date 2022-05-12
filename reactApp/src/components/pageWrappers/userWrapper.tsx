@@ -9,7 +9,6 @@ export default function UserWrapper() {
   const collections = selectCollectionsByUserID(state, userId);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log("trynavigate");
     navigate("./");
   }, [collections]);
   return (

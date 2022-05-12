@@ -99,6 +99,13 @@ export const changeItem = async (
   return responce;
 };
 
+export const deleteItem = async (id: number): Promise<AxiosResponse> => {
+  const responce: AxiosResponse = await axiosInstance
+    .post(`items/delete/${id}`)
+    .then((response: AxiosResponse) => response);
+  return responce;
+};
+
 //collections requests
 
 export const newCollection = async (
@@ -124,6 +131,13 @@ export const changeCollection = async (
 ): Promise<AxiosResponse> => {
   const responce: AxiosResponse = await axiosInstance
     .post(`collections/change`, collection)
+    .then((response: AxiosResponse) => response);
+  return responce;
+};
+
+export const deleteCollection = async (id: number): Promise<AxiosResponse> => {
+  const responce: AxiosResponse = await axiosInstance
+    .post(`collections/delete/${id}`)
     .then((response: AxiosResponse) => response);
   return responce;
 };

@@ -24,3 +24,8 @@ export async function changeItem(item: ItemInterface) {
   await Item.update({ ...item }, { where: { id: item.id } });
   return Promise.resolve();
 }
+
+export async function deleteItem(id: number) {
+  await Item.destroy({ where: { id: id } });
+  return Promise.resolve();
+}

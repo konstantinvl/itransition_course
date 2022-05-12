@@ -8,6 +8,7 @@ export const SET_COLLECTIONS = 'collections/setCollections';
 export const REQUEST_COLLECTIONS = 'collections/requestCollections';
 export const REQUEST_CREATE_COLLECTION = 'collections/requestCollectionCreate';
 export const REQUEST_CHANGE_COLLECTION = 'collections/requestCollectionChange';
+export const REQUEST_DELETE_COLLECTION = 'collections/requestCollectionDelete';
 
 export function setCollections(
   collections: CollectionInterface[]
@@ -29,4 +30,8 @@ export function requestChangeCollection(
   collection: CollectionInterface
 ): PayloadAction<CollectionInterface> {
   return { type: REQUEST_CHANGE_COLLECTION, payload: collection };
+}
+
+export function requestDeleteCollection(id: number): PayloadAction<number> {
+  return { type: REQUEST_DELETE_COLLECTION, payload: id };
 }

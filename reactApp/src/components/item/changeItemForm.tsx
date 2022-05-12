@@ -22,20 +22,31 @@ export const ItemSchema = Yup.object().shape({
   numberField3Value: Yup.number(),
 });
 
-export default function CreateCollection(props: {
+export default function ChangeItemForm(props: {
   item: ItemInterface;
-  callback: () => {};
+  callback: () => void;
 }) {
   const { item, callback } = props;
-  const { id, userId, collectionId } = item;
+  const {
+    id,
+    userId,
+    collectionId,
+    name,
+    textField1Value,
+    textField2Value,
+    textField3Value,
+    numberField1Value,
+    numberField2Value,
+    numberField3Value,
+  } = item;
   const initialValues = {
-    name: "",
-    textField1Value: "",
-    textField2Value: "",
-    textField3Value: "",
-    numberField1Value: 0,
-    numberField2Value: 0,
-    numberField3Value: 0,
+    name,
+    textField1Value,
+    textField2Value,
+    textField3Value,
+    numberField1Value,
+    numberField2Value,
+    numberField3Value,
   };
 
   const dispatch = useAppDispatch();
@@ -67,6 +78,7 @@ export default function CreateCollection(props: {
             ...values,
           })
         );
+        callback();
       }}
       validationSchema={ItemSchema}
     >
