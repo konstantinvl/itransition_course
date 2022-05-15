@@ -24,7 +24,7 @@ export async function createItem(item: ItemCreateInterface) {
     .catch((e) => {
       throw Error(e);
     });
-  // await setTags(newItem.tags);
+  await setTags(newItem.tags);
 
   return newItem;
 }

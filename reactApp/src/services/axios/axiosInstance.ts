@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4050/api/',
+  baseURL: 'https://itr-course-task.herokuapp.com/api/',
   timeout: 10000,
 });
 

@@ -1,6 +1,7 @@
 import { all, put } from 'redux-saga/effects';
 import { requestCollections } from './collections/collectionsActions';
 import { requestItems } from './items/itemsActions';
+import { requestTags } from './tags/tagsActions';
 import { requestUserList } from './userList/userListActions';
 
 export function* appStart() {
@@ -9,6 +10,7 @@ export function* appStart() {
       put(requestUserList()),
       put(requestCollections()),
       put(requestItems()),
+      put(requestTags()),
     ]);
   } catch (e) {
     yield console.log((e as Error).message);

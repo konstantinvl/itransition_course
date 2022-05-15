@@ -7,11 +7,16 @@ import { CollectionInterface, ItemInterface } from "../../common/interfaces";
 import { useAppSelector } from "../../services/store/hooks";
 import { selectCollectionByID } from "../../services/store/collections/colectionsReduser";
 import { selectUserByID } from "../../services/store/userList/userListReduser";
+import { splitTags } from "../../common/functions";
+import TagButton from "../tagButton";
+import ComponentsWrapper from "../componentsWrapper";
+import Like from "./like";
 
 export default function Item(props: { item: ItemInterface }) {
   const { item } = props;
   const {
     userId,
+    id,
     name,
     collectionId,
     textField1Value,
@@ -20,6 +25,8 @@ export default function Item(props: { item: ItemInterface }) {
     numberField1Value,
     numberField2Value,
     numberField3Value,
+    tags,
+    likes,
   } = item;
   const state = useAppSelector((state) => state);
 
@@ -27,15 +34,9 @@ export default function Item(props: { item: ItemInterface }) {
     state,
     collectionId
   ) as CollectionInterface;
-  const {
-    textField1Name,
-    textField2Name,
-    textField3Name,
-    numberField1Name,
-    numberField2Name,
-    numberField3Name,
-  } = collection;
+
   const user = selectUserByID(state, userId);
+  const splitedTags = splitTags(tags);
 
   return (
     <>
@@ -49,23 +50,36 @@ export default function Item(props: { item: ItemInterface }) {
             <TranslatedText text="owner" /> {user?.login}
           </Typography>
           <Typography>
-            {textField1Name && textField1Name + ": " + textField1Value}
+            {collection.textField1Name &&
+              collection.textField1Name + ": " + textField1Value}
           </Typography>
           <Typography>
-            {textField2Name && textField2Name + ": " + textField2Value}
+            {collection.textField2Name &&
+              collection.textField2Name + ": " + textField2Value}
           </Typography>
           <Typography>
-            {textField3Name && textField3Name + ": " + textField3Value}
+            {collection.textField3Name &&
+              collection.textField3Name + ": " + textField3Value}
           </Typography>
           <Typography>
-            {numberField1Name && numberField1Name + ": " + numberField1Value}
+            {collection.numberField1Name &&
+              collection.numberField1Name + ": " + numberField1Value}
           </Typography>
           <Typography>
-            {numberField2Name && numberField2Name + ": " + numberField2Value}
+            {collection.numberField2Name &&
+              collection.numberField2Name + ": " + numberField2Value}
           </Typography>
           <Typography>
-            {numberField3Name && numberField3Name + ": " + numberField3Value}
+            {collection.numberField3Name &&
+              collection.numberField3Name + ": " + numberField3Value}
           </Typography>
+          <ComponentsWrapper>
+            {splitedTags &&
+              splitedTags.map((tag, index) => (
+                <TagButton tag={tag} key={tag + index} />
+              ))}
+          </ComponentsWrapper>
+          <Like likes={likes} itemId={id} />
         </CardWrapper>
       )}
     </>

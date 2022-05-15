@@ -102,3 +102,7 @@ export interface CollectionCreateInterface {
   numberField2Name?: string;
   numberField3Name?: string;
 }
+
+export interface TagInterface {
+  tag: string;
+}

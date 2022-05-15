@@ -25,6 +25,8 @@ import {
   REQUEST_ITEMS,
 } from './items/itemsActions';
 import { itemChange, itemDelete, itemSet, itemsGet } from './items/saga';
+import { tagsGet } from './tags/saga';
+import { REQUEST_TAGS } from './tags/tagsActions';
 import { loginUser, signupUser } from './user/saga';
 import { REQUEST_LOGIN_USER, REQUEST_SIGNUP_USER } from './user/userActions';
 import { userlistGet } from './userList/saga';
@@ -46,6 +48,9 @@ function* mySaga(): Generator<ForkEffect<never>, void, unknown> {
   yield takeEvery(REQUEST_DELETE_COLLECTION, collectionDelete);
 
   yield takeEvery(REQUEST_USERLIST, userlistGet);
+
+  yield takeEvery(REQUEST_TAGS, tagsGet);
+
   yield takeEvery(START_APP, appStart);
 
   yield takeEvery('*', function* logger(action): Generator<

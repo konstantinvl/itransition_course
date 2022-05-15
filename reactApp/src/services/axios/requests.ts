@@ -6,6 +6,7 @@ import {
   ItemInterface,
   ItemCreateInterface,
   User,
+  TagInterface,
 } from '../../common/interfaces';
 import axiosInstance from './axiosInstance';
 
@@ -139,5 +140,14 @@ export const deleteCollection = async (id: number): Promise<AxiosResponse> => {
   const responce: AxiosResponse = await axiosInstance
     .post(`collections/delete/${id}`)
     .then((response: AxiosResponse) => response);
+  return responce;
+};
+
+//tag requsts
+
+export const getTags = async (): Promise<TagInterface[]> => {
+  const responce = await axiosInstance
+    .get(`tags/`)
+    .then((response: AxiosResponse<TagInterface[]>) => response.data);
   return responce;
 };
