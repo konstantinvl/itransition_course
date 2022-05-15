@@ -16,11 +16,14 @@ export async function getAllItems() {
 export async function createItem(item: ItemCreateInterface) {
   console.log(item);
   const newItem = await Item.create({ ...item })
-    .then((res) => res)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
     .catch((e) => {
       throw Error(e);
     });
-  await setTags(newItem.tags);
+  // await setTags(newItem.tags);
 
   return newItem;
 }
