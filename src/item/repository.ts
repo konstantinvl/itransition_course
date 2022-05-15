@@ -14,6 +14,7 @@ export async function getAllItems() {
 }
 
 export async function createItem(item: ItemCreateInterface) {
+  console.log(item);
   const newItem = await Item.create({ ...item })
     .then((res) => res)
     .catch((e) => {
