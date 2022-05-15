@@ -9,7 +9,7 @@ import cors from 'cors';
 import userlist from './userlist/router';
 import collections from './collection/router';
 import items from './item/router';
-import tags from './item/router';
+import tags from './tags/router';
 import { UserModel } from './userlist/user';
 import { getUserlist } from './userlist/repository';
 import { CollectionModel } from './collection/collection';
@@ -46,6 +46,8 @@ const sequelize = new Sequelize(
     },
   }
 );
+
+const queryInterface = sequelize.getQueryInterface();
 
 sequelize
   .sync()
@@ -145,6 +147,12 @@ export const Item = sequelize.define<ItemModel>('item', {
   numberField3Value: { type: DataTypes.REAL },
 });
 
+// queryInterface.addColumn('item', 'tags', {
+//   type: DataTypes.STRING,
+// });
+// queryInterface.addColumn('item', 'likes', {
+//   type: DataTypes.STRING,
+// });
 export const Tag = sequelize.define<TagModel>('tags', {
   tag: {
     type: DataTypes.STRING,

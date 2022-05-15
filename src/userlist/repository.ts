@@ -66,7 +66,6 @@ export async function getUserlist() {
   const userlist = await User.findAll({
     attributes: ['id', 'login', 'role'],
   }).then((res) => res);
-  console.log(userlist);
   return Promise.resolve<UserInterface[]>(userlist);
 }
 

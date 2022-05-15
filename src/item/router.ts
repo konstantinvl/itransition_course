@@ -6,6 +6,7 @@ import { changeItem, createItem, deleteItem, getAllItems } from './repository';
 const router = Router();
 
 router.get('/', async (req, res) => {
+  console.log('get');
   try {
     const data = await getAllItems();
     return res.json(data);

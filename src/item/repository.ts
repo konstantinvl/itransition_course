@@ -7,6 +7,7 @@ export async function getAllItems() {
   const itemList = await Item.findAll()
     .then((res) => res)
     .catch((e) => {
+      console.log(e);
       throw Error(e);
     });
   console.log(itemList);

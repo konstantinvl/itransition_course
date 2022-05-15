@@ -12,7 +12,6 @@ export async function getAllCollections() {
     .catch((e) => {
       throw Error(e);
     });
-  console.log(collectionList);
   return Promise.resolve<CollectionInterface[]>(collectionList);
 }
 
