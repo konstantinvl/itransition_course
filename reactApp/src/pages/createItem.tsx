@@ -1,8 +1,9 @@
 import { TextField } from "formik-mui";
+import { TextField as TextField1 } from "@mui/material";
 import { Field, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { Box, Stack } from "@mui/material";
+import { Autocomplete, Box, Stack } from "@mui/material";
 import TranslatedText from "../components/translatedText";
 
 import { useAppDispatch, useAppSelector } from "../services/store/hooks";
@@ -20,6 +21,7 @@ export const ItemSchema = Yup.object().shape({
   numberField1Value: Yup.number(),
   numberField2Value: Yup.number(),
   numberField3Value: Yup.number(),
+  tags: Yup.string(),
 });
 
 export default function CreateCollection() {
@@ -31,6 +33,7 @@ export default function CreateCollection() {
     numberField1Value: 0,
     numberField2Value: 0,
     numberField3Value: 0,
+    tags: "",
   };
 
   const dispatch = useAppDispatch();
@@ -50,6 +53,10 @@ export default function CreateCollection() {
     numberField3Name,
   } = collection;
 
+  function joinTags(tags: string[]) {
+    return tags.join("#");
+  }
+
   return (
     <Formik
       initialValues={initialValues}
@@ -65,7 +72,7 @@ export default function CreateCollection() {
       }}
       validationSchema={ItemSchema}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, setFieldValue, setTouched, touched }) => (
         <Box
           component="form"
           sx={{ width: "70%", display: "flex" }}
@@ -138,6 +145,18 @@ export default function CreateCollection() {
                 component={TextField}
               />
             )}
+
+            <Autocomplete
+              disablePortal
+              multiple
+              freeSolo
+              id="combo-box-demo"
+              options={["idi", "begi", "stoi"]}
+              onChange={(ev, value) => {
+                setFieldValue("tags", joinTags(value));
+              }}
+              renderInput={(params) => <TextField1 {...params} label="tags" />}
+            />
 
             <button
               type="submit"

@@ -9,10 +9,12 @@ import cors from 'cors';
 import userlist from './userlist/router';
 import collections from './collection/router';
 import items from './item/router';
+import tags from './item/router';
 import { UserModel } from './userlist/user';
 import { getUserlist } from './userlist/repository';
 import { CollectionModel } from './collection/collection';
 import { ItemModel } from './item/item';
+import { TagModel } from './tags/tags';
 
 const app = express();
 app.use(cors());
@@ -29,6 +31,8 @@ app.use('/api/userlist', userlist);
 app.use('/api/collections', collections);
 
 app.use('/api/items', items);
+
+app.use('/api/tags', tags);
 
 const sequelize = new Sequelize(
   'heroku_afcfd845e4ef237',
@@ -127,10 +131,22 @@ export const Item = sequelize.define<ItemModel>('item', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  tags: {
+    type: DataTypes.STRING,
+  },
+  likes: {
+    type: DataTypes.STRING,
+  },
   textField1Value: { type: DataTypes.STRING },
   textField2Value: { type: DataTypes.STRING },
   textField3Value: { type: DataTypes.STRING },
   numberField1Value: { type: DataTypes.REAL },
   numberField2Value: { type: DataTypes.REAL },
   numberField3Value: { type: DataTypes.REAL },
+});
+
+export const Tag = sequelize.define<TagModel>('tags', {
+  tag: {
+    type: DataTypes.STRING,
+  },
 });

@@ -52,6 +52,8 @@ export interface ItemInterface {
   numberField1Value: number;
   numberField2Value: number;
   numberField3Value: number;
+  tags: string;
+  likes: string;
 }
 
 export interface ItemState {
@@ -71,6 +73,7 @@ export interface ItemCreateInterface {
   numberField1Value?: number;
   numberField2Value?: number;
   numberField3Value?: number;
+  tags: string;
 }
 
 export interface CollectionInterface {

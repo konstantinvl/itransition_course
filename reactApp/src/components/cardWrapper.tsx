@@ -20,7 +20,6 @@ export default function CardWrapper(props: {
         m: 1,
         boxShadow: 2,
         transition: "all 0.3s",
-        bgcolor: bgColor ? bgColor : "unset",
         "&:hover": {
           boxShadow: 4,
           transform: "scale(1.02)",

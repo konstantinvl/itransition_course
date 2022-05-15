@@ -1,19 +1,21 @@
 import { Box, IconButton, Stack } from "@mui/material";
 import React, { useState } from "react";
-import { CollectionInterface, ItemInterface } from "../../common/interfaces";
+import { ItemInterface } from "../../common/interfaces";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../services/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../services/store/hooks";
 import { ROLE } from "../../common/renderData";
 import ChangeItemForm from "./changeItemForm";
 import Item from "./item";
+import { requestDeleteItem } from "../../services/store/items/itemsActions";
 
 export default function ChangeableItem(props: { item: ItemInterface }) {
   const { item } = props;
   const [isChanging, setIsChanging] = useState(false);
   const { userId } = item;
   const user = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
   return (
     <Box sx={{ display: "flex", mr: 0.5 }}>
       {isChanging ? (
@@ -29,7 +31,7 @@ export default function ChangeableItem(props: { item: ItemInterface }) {
           <IconButton onClick={() => setIsChanging(!isChanging)}>
             <EditIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => dispatch(requestDeleteItem(item.id))}>
             <DeleteIcon />
           </IconButton>
         </Stack>

@@ -1,4 +1,5 @@
 import { Item } from '../app';
+import { setTags } from '../tags/repository';
 import { ItemCreateInterface, ItemInterface } from './item';
 
 export async function getAllItems() {
@@ -11,17 +12,26 @@ export async function getAllItems() {
   console.log(itemList);
   return Promise.resolve<ItemInterface[]>(itemList);
 }
+
 export async function createItem(item: ItemCreateInterface) {
   const newItem = await Item.create({ ...item })
     .then((res) => res)
     .catch((e) => {
       throw Error(e);
     });
+  await setTags(newItem.tags);
+
   return newItem;
 }
 
 export async function changeItem(item: ItemInterface) {
-  await Item.update({ ...item }, { where: { id: item.id } });
+  await Item.update({ ...item }, { where: { id: item.id } })
+    .then((res) => res)
+    .catch((e) => {
+      throw Error(e);
+    });
+  await setTags(item.tags);
+
   return Promise.resolve();
 }
 

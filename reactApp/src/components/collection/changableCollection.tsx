@@ -5,9 +5,10 @@ import ChangeCollectionForm from "./changeCollectionForm";
 import Collection from "./collection";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../services/store/hooks";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/store/hooks";
 import { ROLE } from "../../common/renderData";
+import { requestDeleteCollection } from "../../services/store/collections/collectionsActions";
 
 export default function ChangeableCollection(props: {
   collection: CollectionInterface;
@@ -16,6 +17,8 @@ export default function ChangeableCollection(props: {
   const [isChanging, setIsChanging] = useState(false);
   const userId = Number(useParams().userId);
   const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   return (
     <Box sx={{ display: "flex", mr: 0.5 }}>
       {isChanging ? (
@@ -31,7 +34,9 @@ export default function ChangeableCollection(props: {
           <IconButton onClick={() => setIsChanging(!isChanging)}>
             <EditIcon />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => dispatch(requestDeleteCollection(collection.id))}
+          >
             <DeleteIcon />
           </IconButton>
         </Stack>

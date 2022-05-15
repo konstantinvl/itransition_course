@@ -9,7 +9,7 @@ export default function MainPage() {
   const { collections, items } = useAppSelector((state) => state);
 
   return (
-    <Stack>
+    <Stack color={"primary"}>
       <SectionMain title="biggestCollection">
         {collections.collections.map((collection) => (
           <Collection collection={collection} key={collection.id} />

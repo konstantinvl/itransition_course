@@ -2,9 +2,8 @@ import { TextField } from "formik-mui";
 import { Field, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
-import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/store/hooks";
 import { CollectionInterface, ItemInterface } from "../../common/interfaces";
 import { selectCollectionByID } from "../../services/store/collections/colectionsReduser";
@@ -20,6 +19,7 @@ export const ItemSchema = Yup.object().shape({
   numberField1Value: Yup.number(),
   numberField2Value: Yup.number(),
   numberField3Value: Yup.number(),
+  tags: Yup.string(),
 });
 
 export default function ChangeItemForm(props: {
@@ -28,9 +28,6 @@ export default function ChangeItemForm(props: {
 }) {
   const { item, callback } = props;
   const {
-    id,
-    userId,
-    collectionId,
     name,
     textField1Value,
     textField2Value,
@@ -38,6 +35,7 @@ export default function ChangeItemForm(props: {
     numberField1Value,
     numberField2Value,
     numberField3Value,
+    tags,
   } = item;
   const initialValues = {
     name,
@@ -47,6 +45,7 @@ export default function ChangeItemForm(props: {
     numberField1Value,
     numberField2Value,
     numberField3Value,
+    tags,
   };
 
   const dispatch = useAppDispatch();
@@ -72,9 +71,7 @@ export default function ChangeItemForm(props: {
         console.log(values);
         dispatch(
           requestChangeItem({
-            id,
-            userId,
-            collectionId,
+            ...item,
             ...values,
           })
         );

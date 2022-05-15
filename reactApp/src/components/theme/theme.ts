@@ -14,6 +14,6 @@ export enum THEME {
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
-    ...(mode === 'light' ? {} : {}),
+    ...(mode === 'light' ? { type: 'light' } : { type: 'dark' }),
   },
 });

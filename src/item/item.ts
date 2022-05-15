@@ -16,6 +16,8 @@ export interface ItemCreateInterface {
   numberField1Value?: number;
   numberField2Value?: number;
   numberField3Value?: number;
+  tags: string;
+  likes: string;
 }
 export interface ItemInterface {
   userId: number;
@@ -28,6 +30,8 @@ export interface ItemInterface {
   numberField1Value: number;
   numberField2Value: number;
   numberField3Value: number;
+  tags: string;
+  likes: string;
 }
 
 export interface ItemModel
@@ -45,4 +49,6 @@ export interface ItemModel
   numberField1Value: CreationOptional<number>;
   numberField2Value: CreationOptional<number>;
   numberField3Value: CreationOptional<number>;
+  tags: CreationOptional<string>;
+  likes: CreationOptional<string>;
 }

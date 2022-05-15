@@ -38,32 +38,36 @@ export default function Item(props: { item: ItemInterface }) {
   const user = selectUserByID(state, userId);
 
   return (
-    <CardWrapper>
-      <Typography variant="h5">{name}</Typography>
-      <Typography variant="subtitle2" color={grey[400]}>
-        <TranslatedText text="collectionOf" /> vine
-      </Typography>
-      <Typography variant="subtitle2" color={grey[400]}>
-        <TranslatedText text="owner" /> {user?.login}
-      </Typography>
-      <Typography>
-        {textField1Name && textField1Name + ": " + textField1Value}
-      </Typography>
-      <Typography>
-        {textField2Name && textField2Name + ": " + textField2Value}
-      </Typography>
-      <Typography>
-        {textField3Name && textField3Name + ": " + textField3Value}
-      </Typography>
-      <Typography>
-        {numberField1Name && numberField1Name + ": " + numberField1Value}
-      </Typography>
-      <Typography>
-        {numberField2Name && numberField2Name + ": " + numberField2Value}
-      </Typography>
-      <Typography>
-        {numberField3Name && numberField3Name + ": " + numberField3Value}
-      </Typography>
-    </CardWrapper>
+    <>
+      {collection && (
+        <CardWrapper>
+          <Typography variant="h5">{name}</Typography>
+          <Typography variant="subtitle2" color={grey[400]}>
+            <TranslatedText text="collectionOf" /> vine
+          </Typography>
+          <Typography variant="subtitle2" color={grey[400]}>
+            <TranslatedText text="owner" /> {user?.login}
+          </Typography>
+          <Typography>
+            {textField1Name && textField1Name + ": " + textField1Value}
+          </Typography>
+          <Typography>
+            {textField2Name && textField2Name + ": " + textField2Value}
+          </Typography>
+          <Typography>
+            {textField3Name && textField3Name + ": " + textField3Value}
+          </Typography>
+          <Typography>
+            {numberField1Name && numberField1Name + ": " + numberField1Value}
+          </Typography>
+          <Typography>
+            {numberField2Name && numberField2Name + ": " + numberField2Value}
+          </Typography>
+          <Typography>
+            {numberField3Name && numberField3Name + ": " + numberField3Value}
+          </Typography>
+        </CardWrapper>
+      )}
+    </>
   );
 }
