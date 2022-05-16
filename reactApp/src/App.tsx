@@ -42,11 +42,23 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Container sx={{ p: "0px !important", m: 0 }}>
+        <Container
+          sx={{
+            p: "0px !important",
+            m: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            maxWidth: "unset !important",
+          }}
+        >
           <AppHeader />
 
           <Paper
             sx={{
+              width: "100%",
+              maxWidth: "unset !important",
+              flex: 1,
               mt: 7,
               p: 2,
               display: "flex",
