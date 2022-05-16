@@ -1,11 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { call, delay, fork, put } from 'redux-saga/effects';
-import {
-  ItemInterface,
-  ItemCreateInterface,
-  CommentInterface,
-} from '../../../common/interfaces';
+import { CommentInterface } from '../../../common/interfaces';
 import { getComments, newComment } from '../../axios/requests';
 import { notificationSendError } from '../notification/notificationActions';
 import { setComments } from './commentsActions';

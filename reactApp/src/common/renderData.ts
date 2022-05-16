@@ -5,11 +5,6 @@ export const AuthPages: Page[] = [
   { title: 'signupAppHeader', path: './auth/signin' },
 ];
 
-export const ViewPages: Page[] = [
-  { title: 'User List', path: './userlist' },
-  { title: 'Messages', path: './messages' },
-];
-
 export const UserMenuPages: Page[] = [
   { title: 'myCollections', path: './mycollections' },
 ];
@@ -22,6 +17,6 @@ export enum ROLE {
 }
 
 export enum NotificationType {
-  SUCCESS = 'Success',
-  ERROR = 'Error',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }

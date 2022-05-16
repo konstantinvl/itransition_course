@@ -9,7 +9,7 @@ const initialState: CollectionState = {
   collections: [],
 };
 
-export const collectionSlice = createSlice({
+const collectionSlice = createSlice({
   name: 'collections',
   initialState,
   reducers: {

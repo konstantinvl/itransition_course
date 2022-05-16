@@ -13,7 +13,7 @@ import { selectCollectionByID } from "../services/store/collections/colectionsRe
 import { useNavigate, useParams } from "react-router-dom";
 import { requestCreateItem } from "../services/store/items/itemsActions";
 
-export const ItemSchema = Yup.object().shape({
+const ItemSchema = Yup.object().shape({
   name: Yup.string().required(),
   textField1Value: Yup.string(),
   textField2Value: Yup.string(),

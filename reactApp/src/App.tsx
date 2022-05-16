@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  createTheme,
-  Paper,
-  ThemeProvider,
-} from "@mui/material";
+import { Container, createTheme, Paper, ThemeProvider } from "@mui/material";
 
 import React, { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -26,13 +20,18 @@ import { requestStartApp } from "./services/store/commonActions";
 import { useAppDispatch, useAppSelector } from "./services/store/hooks";
 
 function App() {
-  const [mode, setMode] = React.useState<THEME.LIGHT | THEME.DARK>(THEME.LIGHT);
+  const themeMode = localStorage.getItem("mode") as THEME.LIGHT | THEME.DARK;
+  const [mode, setMode] = React.useState<THEME.LIGHT | THEME.DARK>(
+    themeMode || THEME.LIGHT
+  );
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) =>
-          prevMode === THEME.LIGHT ? THEME.DARK : THEME.LIGHT
-        );
+        setMode((prevMode) => {
+          const mode = prevMode === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+          localStorage.setItem("mode", mode);
+          return mode;
+        });
       },
     }),
     []
@@ -44,11 +43,11 @@ function App() {
     switch (message.type) {
       case NotificationType.SUCCESS:
         return toast.success(<TranslatedText text={message.message} />, {
-          icon: <CheckIcon />,
+          icon: <CheckIcon htmlColor={message.type} />,
         });
       case NotificationType.ERROR:
         return toast.error(<TranslatedText text={message.message} />, {
-          icon: <ErrorOutlineIcon />,
+          icon: <ErrorOutlineIcon htmlColor={message.type} />,
         });
       default:
         return "No Notification";
@@ -84,10 +83,11 @@ function App() {
           <Paper
             sx={{
               width: "100%",
+              minHeight: "100vh",
               maxWidth: "unset !important",
               flex: 1,
-              mt: 7,
-              p: 2,
+              p: 5,
+              pt: 10,
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "space-evenly",

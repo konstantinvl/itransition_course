@@ -7,7 +7,7 @@ import { TextField } from "formik-mui";
 import { Field, Formik } from "formik";
 import { requestCreateComment } from "../../services/store/comments/commentsActions";
 
-export const CommentSchema = Yup.object().shape({
+const CommentSchema = Yup.object().shape({
   comment: Yup.string().required(),
 });
 

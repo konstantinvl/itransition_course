@@ -1,5 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { splitTags } from '../../../common/functions';
+import { checkItem, splitTags } from '../../../common/functions';
 import { ItemInterface, ItemState } from '../../../common/interfaces';
 import { RootState } from '../store';
 
@@ -38,6 +38,11 @@ export const selectItemsByTag = createSelector(
 export const selectItemsByID = createSelector(
   [getItemState, (state, id: number) => id],
   (state, id) => state.items.find((item) => item.id === id)
+);
+
+export const selectItemsBySearch = createSelector(
+  [getItemState, (state, search: string) => search],
+  (state, search) => state.items.filter((item) => checkItem(item, search))
 );
 
 export default itemSlice.reducer;

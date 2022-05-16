@@ -8,9 +8,10 @@ export default function ComponentsWrapper(props: {
   return (
     <Box
       sx={{
+        mt: 2,
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
       }}
     >
       {children}

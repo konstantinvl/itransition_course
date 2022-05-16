@@ -2,14 +2,14 @@ import { TextField } from "formik-mui";
 import { Field, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { Box, Button, MenuItem, Stack } from "@mui/material";
+import { Box, MenuItem, Stack } from "@mui/material";
 import TranslatedText from "../components/translatedText";
 import { CollectionTypes } from "../common/renderData";
 import { useAppDispatch, useAppSelector } from "../services/store/hooks";
 import { requestCreateCollection } from "../services/store/collections/collectionsActions";
 import { CollectionCreateInterface } from "../common/interfaces";
 
-export const CollectionSchema = Yup.object().shape({
+const CollectionSchema = Yup.object().shape({
   name: Yup.string().required(),
   type: Yup.string().required(),
   description: Yup.string().required(),

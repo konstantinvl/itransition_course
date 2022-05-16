@@ -4,6 +4,7 @@ import MainWrapper from "../components/pageWrappers/mainWrapper";
 import CreateCollection from "../pages/createCollection";
 import ItemPage from "../pages/itemPage";
 import MainPage from "../pages/main";
+import SearchPage from "../pages/searchPage";
 import TagPage from "../pages/tagPage";
 
 import AuthRouter from "./authRouter";
@@ -21,6 +22,7 @@ export default function AppRouter(): JSX.Element {
         <Route path="/tag/:tag" element={<TagPage />} />
         <Route path="/:userId/:collectionId/*" element={<CollectionRouter />} />
         <Route path="/:userId/:collectionId/:itemId" element={<ItemPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Route>
     </Routes>
   );

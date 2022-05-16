@@ -11,7 +11,7 @@ import { requestChangeItem } from "../../services/store/items/itemsActions";
 import TranslatedText from "../translatedText";
 import CardWrapper from "../cardWrapper";
 
-export const ItemSchema = Yup.object().shape({
+const ItemSchema = Yup.object().shape({
   name: Yup.string().required(),
   textField1Value: Yup.string(),
   textField2Value: Yup.string(),

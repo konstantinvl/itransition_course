@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { AuthFormProps } from "../../common/interfaces";
 import { Stack } from "@mui/material";
 
-export const AuthSchema = Yup.object().shape({
+const AuthSchema = Yup.object().shape({
   login: Yup.string().required(),
   password: Yup.string().required(),
 });

@@ -21,6 +21,7 @@ export default function LanguageSwitcher() {
           label={<LanguageIcon />}
           onChange={(ev) => {
             i18n.changeLanguage(ev.target.value);
+            localStorage.setItem("language", ev.target.value);
           }}
         >
           {languagesSet.map((lang) => (

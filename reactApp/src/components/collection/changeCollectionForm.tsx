@@ -11,7 +11,7 @@ import { requestChangeCollection } from "../../services/store/collections/collec
 import TranslatedText from "../translatedText";
 import { CollectionTypes } from "../../common/renderData";
 
-export const CollectionSchema = Yup.object().shape({
+const CollectionSchema = Yup.object().shape({
   name: Yup.string().required(),
   type: Yup.string().required(),
   description: Yup.string().required(),
