@@ -69,15 +69,15 @@ function* mySaga(): Generator<ForkEffect<never>, void, unknown> {
 
   yield takeEvery(START_APP, appStart);
 
-  yield takeEvery('*', function* logger(action): Generator<
-    SelectEffect,
-    void,
-    unknown
-  > {
-    const state = yield select();
-    console.log('action', action);
-    console.log('state after', state);
-  });
+  // yield takeEvery('*', function* logger(action): Generator<
+  //   SelectEffect,
+  //   void,
+  //   unknown
+  // > {
+  //   const state = yield select();
+  //   console.log('action', action);
+  //   console.log('state after', state);
+  // });
   // yield takeEvery(REQUEST_DELETING, usersDelete);
   // yield takeEvery(REQUEST_BLOCKING, usersBlock);
   // yield takeEvery(REQUEST_UNBLOCKING, usersUnblock);
