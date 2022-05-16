@@ -27,7 +27,8 @@ export default function Like(props: { likes: string; itemId: number }) {
       color="warning"
       size="small"
       startIcon={isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-      onClick={() => {
+      onClick={(ev) => {
+        ev.stopPropagation();
         dispath(requestLikeItem(itemId, user.id));
       }}
       disabled={!user.id}

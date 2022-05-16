@@ -95,13 +95,13 @@ export default function CreateCollection() {
               ))}
             </Field>
 
-            <Button
+            <button
               type="submit"
               className="btn btn-primary"
               onSubmit={(ev) => ev.preventDefault()}
             >
               <TranslatedText text="create" />
-            </Button>
+            </button>
           </Stack>
           <Stack spacing={2} sx={{ flex: 1, mx: 0.5 }}>
             <Field

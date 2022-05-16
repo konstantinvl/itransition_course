@@ -9,7 +9,7 @@ export default function UserRouter(): JSX.Element {
     <Routes>
       <Route path="/" element={<UserWrapper />}>
         <Route index element={<UserPage />} />
-        <Route path="new" element={<CreateCollection />} />
+        <Route path="/new" element={<CreateCollection />} />
       </Route>
     </Routes>
   );

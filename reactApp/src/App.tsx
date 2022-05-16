@@ -1,4 +1,10 @@
-import { Box, Container, createTheme, ThemeProvider } from "@mui/material";
+import {
+  Box,
+  Container,
+  createTheme,
+  Paper,
+  ThemeProvider,
+} from "@mui/material";
 
 import React, { useEffect } from "react";
 import "./App.scss";
@@ -36,21 +42,20 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Container>
+        <Container sx={{ p: "0px !important", m: 0 }}>
           <AppHeader />
-          <Box bgcolor={"primary"} className="check">
-            <Box
-              bgcolor={"primary"}
-              sx={{
-                my: 10,
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <AppRouter />
-            </Box>
-          </Box>
+
+          <Paper
+            sx={{
+              mt: 7,
+              p: 2,
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <AppRouter />
+          </Paper>
         </Container>
       </ThemeProvider>
     </ColorModeContext.Provider>

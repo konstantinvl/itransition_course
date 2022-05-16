@@ -20,3 +20,8 @@ export enum ROLE {
   ADMIN = 'admin',
   USER = 'user',
 }
+
+export enum NotificationType {
+  SUCCESS = 'Success',
+  ERROR = 'Error',
+}

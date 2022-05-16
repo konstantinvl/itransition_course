@@ -1,3 +1,5 @@
+import { NotificationType } from './renderData';
+
 export interface Page {
   title: string;
   path: string;
@@ -111,4 +113,9 @@ export interface CommentInterface {
   comment: string;
   itemId: number;
   userId: number;
+}
+
+export interface NotificationState {
+  type: NotificationType.SUCCESS | NotificationType.ERROR | '';
+  message: string;
 }
