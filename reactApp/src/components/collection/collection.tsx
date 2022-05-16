@@ -2,7 +2,6 @@ import { CardMedia, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import React from "react";
 import TranslatedText from "../translatedText";
-import collectionImage from "../../assets/collection.png";
 import { CollectionInterface } from "../../common/interfaces";
 import CardWrapper from "../cardWrapper";
 import { useAppSelector } from "../../services/store/hooks";
@@ -30,6 +29,7 @@ export default function Collection(props: { collection: CollectionInterface }) {
             variant="subtitle2"
             color={grey[400]}
             onClick={(ev) => {
+              console.log("user");
               ev.stopPropagation();
               navigate(`/${user.id}`);
             }}
@@ -39,9 +39,9 @@ export default function Collection(props: { collection: CollectionInterface }) {
           </Typography>
           <CardMedia
             component="img"
-            height="250"
-            image={collectionImage}
+            src={process.env.PUBLIC_URL + `/images/${type}.png`}
             alt="collectionImage"
+            sx={{ backgroundSize: "contain", my: 1 }}
           />
           <Typography variant="subtitle2">
             <i>{description}</i>

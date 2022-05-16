@@ -10,11 +10,13 @@ import userlist from './userlist/router';
 import collections from './collection/router';
 import items from './item/router';
 import tags from './tags/router';
+import comments from './comments/router';
 import { UserModel } from './userlist/user';
 import { getUserlist } from './userlist/repository';
 import { CollectionModel } from './collection/collection';
 import { ItemModel } from './item/item';
 import { TagModel } from './tags/tags';
+import { CommentModel } from './comments/comment';
 
 const app = express();
 app.use(cors());
@@ -33,6 +35,8 @@ app.use('/api/collections', collections);
 app.use('/api/items', items);
 
 app.use('/api/tags', tags);
+
+app.use('/api/comments', comments);
 
 const sequelize = new Sequelize(
   'heroku_afcfd845e4ef237',
@@ -138,6 +142,8 @@ export const Item = sequelize.define<ItemModel>('item', {
   },
   likes: {
     type: DataTypes.STRING,
+    defaultValue: '',
+    allowNull: false,
   },
   textField1Value: { type: DataTypes.STRING },
   textField2Value: { type: DataTypes.STRING },
@@ -149,12 +155,32 @@ export const Item = sequelize.define<ItemModel>('item', {
 
 // queryInterface.addColumn('item', 'tags', {
 //   type: DataTypes.STRING,
+//   defaultValue: '',
+//   allowNull: false,
 // });
 // queryInterface.addColumn('item', 'likes', {
 //   type: DataTypes.STRING,
+//   defaultValue: '',
+//   allowNull: false,
 // });
+
+// queryInterface.removeColumn('item', 'tags');
+// queryInterface.removeColumn('item', 'likes');
+
 export const Tag = sequelize.define<TagModel>('tags', {
   tag: {
     type: DataTypes.STRING,
+  },
+});
+
+export const Comment = sequelize.define<CommentModel>('comments', {
+  comment: {
+    type: DataTypes.STRING,
+  },
+  itemId: {
+    type: DataTypes.INTEGER,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
   },
 });

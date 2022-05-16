@@ -7,7 +7,10 @@ export const enCreateNew = {
   description: 'Description',
   type: 'Collection type',
   name: 'Name',
+  comment: 'Comment ',
+  send: 'Send ',
   save: 'Save Changes',
+  newComment: 'New Comment ',
 };
 
 export const ruCreateNew = {
@@ -19,5 +22,8 @@ export const ruCreateNew = {
   description: 'Описание',
   type: 'Тип коллекции',
   name: 'Название',
+  comment: 'Комментарий ',
+  send: 'Отправить ',
   save: 'Сохранить изменения',
+  newComment: 'Новый комментарий ',
 };

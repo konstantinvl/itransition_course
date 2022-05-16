@@ -35,4 +35,9 @@ export const selectItemsByTag = createSelector(
     })
 );
 
+export const selectItemsByID = createSelector(
+  [getItemState, (state, id: number) => id],
+  (state, id) => state.items.find((item) => item.id === id)
+);
+
 export default itemSlice.reducer;

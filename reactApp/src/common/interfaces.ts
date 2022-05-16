@@ -106,3 +106,9 @@ export interface CollectionCreateInterface {
 export interface TagInterface {
   tag: string;
 }
+
+export interface CommentInterface {
+  comment: string;
+  itemId: number;
+  userId: number;
+}

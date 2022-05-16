@@ -40,13 +40,13 @@ export default function CreateCollection() {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        console.log(values);
         dispatch(
           requestCreateCollection({
             userId: user.id,
             ...values,
           } as CollectionCreateInterface)
         );
+        actions.resetForm();
       }}
       validationSchema={CollectionSchema}
     >

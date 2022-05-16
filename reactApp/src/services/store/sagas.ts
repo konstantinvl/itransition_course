@@ -16,6 +16,11 @@ import {
   collectionSet,
   collectionsGet,
 } from './collections/saga';
+import {
+  REQUEST_COMMENTS,
+  REQUEST_CREATE_COMMENT,
+} from './comments/commentsActions';
+import { commentSet, startCommentRequesting } from './comments/saga';
 import { START_APP } from './commonActions';
 import { appStart } from './commonSaga';
 import {
@@ -23,8 +28,15 @@ import {
   REQUEST_CREATE_ITEM,
   REQUEST_DELETE_ITEM,
   REQUEST_ITEMS,
+  REQUEST_LIKE_ITEM,
 } from './items/itemsActions';
-import { itemChange, itemDelete, itemSet, itemsGet } from './items/saga';
+import {
+  itemChange,
+  itemDelete,
+  itemLike,
+  itemSet,
+  itemsGet,
+} from './items/saga';
 import { tagsGet } from './tags/saga';
 import { REQUEST_TAGS } from './tags/tagsActions';
 import { loginUser, signupUser } from './user/saga';
@@ -41,11 +53,15 @@ function* mySaga(): Generator<ForkEffect<never>, void, unknown> {
   yield takeEvery(REQUEST_CREATE_ITEM, itemSet);
   yield takeEvery(REQUEST_CHANGE_ITEM, itemChange);
   yield takeEvery(REQUEST_DELETE_ITEM, itemDelete);
+  yield takeEvery(REQUEST_LIKE_ITEM, itemLike);
 
   yield takeEvery(REQUEST_COLLECTIONS, collectionsGet);
   yield takeEvery(REQUEST_CREATE_COLLECTION, collectionSet);
   yield takeEvery(REQUEST_CHANGE_COLLECTION, collectionChange);
   yield takeEvery(REQUEST_DELETE_COLLECTION, collectionDelete);
+
+  yield takeEvery(REQUEST_COMMENTS, startCommentRequesting);
+  yield takeEvery(REQUEST_CREATE_COMMENT, commentSet);
 
   yield takeEvery(REQUEST_USERLIST, userlistGet);
 

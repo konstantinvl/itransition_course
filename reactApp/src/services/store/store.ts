@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import collectionReduser from './collections/colectionsReduser';
+import commentsReduser from './comments/commentsReduser';
 import itemsReduser from './items/itemsReduser';
 import mySaga from './sagas';
+import tagsReducer from './tags/tagsReducer';
 import userReduser from './user/userReduser';
 import userListReduser from './userList/userListReduser';
 
@@ -14,6 +16,8 @@ export const store = configureStore({
     user: userReduser,
     items: itemsReduser,
     collections: collectionReduser,
+    tags: tagsReducer,
+    comments: commentsReduser,
   },
   middleware: [sagaMiddleware],
 });

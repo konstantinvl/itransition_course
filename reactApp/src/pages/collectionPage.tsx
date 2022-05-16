@@ -1,7 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { CollectionInterface } from "../common/interfaces";
 import { ROLE } from "../common/renderData";
 import CreateNew from "../components/createNew";
 import ChangeableItem from "../components/item/changeableItem";
@@ -15,28 +14,29 @@ export default function CollectionPage() {
   const state = useAppSelector((state) => state);
   const { user } = state;
   const items = selectItemsByCollectionID(state, collectionId);
-  const collection = selectCollectionByID(
-    state,
-    collectionId
-  ) as CollectionInterface;
+  const collection = selectCollectionByID(state, collectionId);
 
   return (
-    <Stack justifyContent="flex-start">
-      <Typography variant="h4">{collection.name}</Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-        }}
-      >
-        {items.map((item) => (
-          <ChangeableItem item={item} key={item.id} />
-        ))}
-        {(user.id === collection.userId || user.role === ROLE.ADMIN) && (
-          <CreateNew text="createItem" path={`./newItem/${collectionId}`} />
-        )}
-      </Box>
-    </Stack>
+    <>
+      {collection && (
+        <Stack justifyContent="flex-start">
+          <Typography variant="h4">{collection.name}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            {items.map((item) => (
+              <ChangeableItem item={item} key={item.id} />
+            ))}
+            {(user.id === collection.userId || user.role === ROLE.ADMIN) && (
+              <CreateNew text="createItem" path={`./newItem/${collectionId}`} />
+            )}
+          </Box>
+        </Stack>
+      )}
+    </>
   );
 }

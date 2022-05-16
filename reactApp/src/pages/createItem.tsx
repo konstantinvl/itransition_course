@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "../services/store/hooks";
 
 import { CollectionInterface } from "../common/interfaces";
 import { selectCollectionByID } from "../services/store/collections/colectionsReduser";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { requestCreateItem } from "../services/store/items/itemsActions";
 
 export const ItemSchema = Yup.object().shape({
@@ -24,7 +24,7 @@ export const ItemSchema = Yup.object().shape({
   tags: Yup.string(),
 });
 
-export default function CreateCollection() {
+export default function CreateItem() {
   const initialValues = {
     name: "",
     textField1Value: "",
@@ -39,12 +39,16 @@ export default function CreateCollection() {
   const dispatch = useAppDispatch();
   const collectionId = Number(useParams().collectionid);
   const state = useAppSelector((state) => state);
+
+  const { tags } = state.tags;
+
   const collection = selectCollectionByID(
     state,
     collectionId
   ) as CollectionInterface;
 
   const {
+    userId,
     textField1Name,
     textField2Name,
     textField3Name,
@@ -56,6 +60,8 @@ export default function CreateCollection() {
   function joinTags(tags: string[]) {
     return tags.join("#");
   }
+
+  const navigate = useNavigate();
 
   return (
     <Formik
@@ -69,6 +75,8 @@ export default function CreateCollection() {
             ...values,
           })
         );
+        actions.resetForm();
+        navigate(`/${userId}/${collectionId}`);
       }}
       validationSchema={ItemSchema}
     >
@@ -151,7 +159,7 @@ export default function CreateCollection() {
               multiple
               freeSolo
               id="combo-box-demo"
-              options={["idi", "begi", "stoi"]}
+              options={tags.map((tag) => tag.tag)}
               onChange={(ev, value) => {
                 setFieldValue("tags", joinTags(value));
               }}

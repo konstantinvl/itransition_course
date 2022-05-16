@@ -6,6 +6,7 @@ export const REQUEST_ITEMS = 'items/requestItems';
 export const REQUEST_CREATE_ITEM = 'items/requestItemCreate';
 export const REQUEST_CHANGE_ITEM = 'items/requestItemChange';
 export const REQUEST_DELETE_ITEM = 'items/requestItemDelete';
+export const REQUEST_LIKE_ITEM = 'items/requestItemLike';
 
 export function setItems(
   items: ItemInterface[]
@@ -31,4 +32,11 @@ export function requestChangeItem(
 
 export function requestDeleteItem(id: number): PayloadAction<number> {
   return { type: REQUEST_DELETE_ITEM, payload: id };
+}
+
+export function requestLikeItem(
+  itemId: number,
+  userId: number
+): PayloadAction<{ itemId: number; userId: number }> {
+  return { type: REQUEST_LIKE_ITEM, payload: { itemId, userId } };
 }

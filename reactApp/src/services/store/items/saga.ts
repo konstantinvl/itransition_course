@@ -6,6 +6,7 @@ import {
   changeItem,
   deleteItem,
   getItems,
+  likeItem,
   newItem,
 } from '../../axios/requests';
 
@@ -42,6 +43,17 @@ export function* itemChange(action: PayloadAction<ItemInterface>) {
 export function* itemDelete(action: PayloadAction<number>) {
   try {
     yield call(deleteItem, action.payload);
+    yield put(requestItems());
+  } catch (e) {
+    yield console.log((e as Error).message);
+  }
+}
+
+export function* itemLike(
+  action: PayloadAction<{ itemId: number; userId: number }>
+) {
+  try {
+    yield call(likeItem, action.payload);
     yield put(requestItems());
   } catch (e) {
     yield console.log((e as Error).message);

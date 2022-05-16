@@ -7,6 +7,7 @@ import {
   ItemCreateInterface,
   User,
   TagInterface,
+  CommentInterface,
 } from '../../common/interfaces';
 import axiosInstance from './axiosInstance';
 
@@ -107,6 +108,18 @@ export const deleteItem = async (id: number): Promise<AxiosResponse> => {
   return responce;
 };
 
+export const likeItem = async (like: {
+  itemId: number;
+  userId: number;
+}): Promise<AxiosResponse> => {
+  const responce: AxiosResponse = await axiosInstance
+    .post(`items/like`, {
+      ...like,
+    })
+    .then((response: AxiosResponse) => response);
+  return responce;
+};
+
 //collections requests
 
 export const newCollection = async (
@@ -149,5 +162,25 @@ export const getTags = async (): Promise<TagInterface[]> => {
   const responce = await axiosInstance
     .get(`tags/`)
     .then((response: AxiosResponse<TagInterface[]>) => response.data);
+  return responce;
+};
+
+//comments requests
+
+export const newComment = async (
+  comment: CommentInterface
+): Promise<AxiosResponse> => {
+  const responce: AxiosResponse = await axiosInstance
+    .post(`comments/`, {
+      ...comment,
+    })
+    .then((response: AxiosResponse) => response);
+  return responce;
+};
+
+export const getComments = async (): Promise<CommentInterface[]> => {
+  const responce = await axiosInstance
+    .get(`comments/`)
+    .then((response: AxiosResponse<CommentInterface[]>) => response.data);
   return responce;
 };

@@ -11,6 +11,7 @@ import { splitTags } from "../../common/functions";
 import TagButton from "../tagButton";
 import ComponentsWrapper from "../componentsWrapper";
 import Like from "./like";
+import { useNavigate } from "react-router-dom";
 
 export default function Item(props: { item: ItemInterface }) {
   const { item } = props;
@@ -38,13 +39,18 @@ export default function Item(props: { item: ItemInterface }) {
   const user = selectUserByID(state, userId);
   const splitedTags = splitTags(tags);
 
+  const navigate = useNavigate();
+
   return (
     <>
       {collection && (
-        <CardWrapper>
+        <CardWrapper
+          onClick={() => navigate(`/${userId}/${collectionId}/${id}`)}
+        >
           <Typography variant="h5">{name}</Typography>
           <Typography variant="subtitle2" color={grey[400]}>
-            <TranslatedText text="collectionOf" /> vine
+            <TranslatedText text="collectionOf" />{" "}
+            <TranslatedText text={collection.type} />
           </Typography>
           <Typography variant="subtitle2" color={grey[400]}>
             <TranslatedText text="owner" /> {user?.login}
