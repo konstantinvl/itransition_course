@@ -3,8 +3,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useAppSelector } from "../../services/store/hooks";
-import { Typography } from "@mui/material";
-import TranslatedText from "../translatedText";
 import NavigationLink from "./NavigationLink";
 import { UserMenuPages } from "../../common/renderData";
 
@@ -51,7 +49,7 @@ export default function UserBar() {
           return (
             <MenuItem onClick={handleClose} key={page.title}>
               <NavigationLink
-                page={{ title: "My Collections", path: `/${user.id}` }}
+                page={{ title: "myCollections", path: `/${user.id}` }}
               />
             </MenuItem>
           );

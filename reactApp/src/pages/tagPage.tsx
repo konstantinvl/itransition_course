@@ -1,3 +1,4 @@
+import { Stack, Typography } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import ComponentsWrapper from "../components/componentsWrapper";
@@ -11,10 +12,13 @@ export default function TagPage() {
   const items = selectItemsByTag(state, tag);
 
   return (
-    <ComponentsWrapper>
-      {items.map((item) => (
-        <Item item={item} key={item.id} />
-      ))}
-    </ComponentsWrapper>
+    <Stack>
+      <Typography variant="h2">#{tag}</Typography>
+      <ComponentsWrapper>
+        {items.map((item) => (
+          <Item item={item} key={item.id} />
+        ))}
+      </ComponentsWrapper>
+    </Stack>
   );
 }

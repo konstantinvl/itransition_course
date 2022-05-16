@@ -11,6 +11,7 @@ export const enCreateNew = {
   send: 'Send ',
   save: 'Save Changes',
   newComment: 'New Comment ',
+  tags: 'Tags',
 };
 
 export const ruCreateNew = {
@@ -26,4 +27,5 @@ export const ruCreateNew = {
   send: 'Отправить ',
   save: 'Сохранить изменения',
   newComment: 'Новый комментарий ',
+  tags: 'Теги',
 };

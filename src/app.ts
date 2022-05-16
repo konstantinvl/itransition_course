@@ -153,19 +153,7 @@ export const Item = sequelize.define<ItemModel>('item', {
   numberField3Value: { type: DataTypes.REAL },
 });
 
-// queryInterface.addColumn('item', 'tags', {
-//   type: DataTypes.STRING,
-//   defaultValue: '',
-//   allowNull: false,
-// });
-// queryInterface.addColumn('item', 'likes', {
-//   type: DataTypes.STRING,
-//   defaultValue: '',
-//   allowNull: false,
-// });
-
-// queryInterface.removeColumn('item', 'tags');
-// queryInterface.removeColumn('item', 'likes');
+User.create({ login: 'admin', password: 'admin', role: 'admin' });
 
 export const Tag = sequelize.define<TagModel>('tags', {
   tag: {

@@ -1,4 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { biggestCollections } from '../../../common/functions';
 import {
   CollectionInterface,
   CollectionState,
@@ -19,6 +20,7 @@ const collectionSlice = createSlice({
   },
 });
 
+export const getState = (state: RootState) => state;
 export const getCollectionState = (state: RootState): CollectionState =>
   state.collections;
 export const selectCollectionByID = createSelector(
@@ -29,6 +31,9 @@ export const selectCollectionsByUserID = createSelector(
   [getCollectionState, (state, userId: number) => userId],
   (state, userId) =>
     state.collections.filter((collection) => collection.userId === userId)
+);
+export const selectBiggestCollections = createSelector([getState], (state) =>
+  biggestCollections(state.collections.collections, state)
 );
 
 export default collectionSlice.reducer;

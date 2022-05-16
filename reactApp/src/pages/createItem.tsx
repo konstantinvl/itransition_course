@@ -163,7 +163,12 @@ export default function CreateItem() {
               onChange={(ev, value) => {
                 setFieldValue("tags", joinTags(value));
               }}
-              renderInput={(params) => <TextField1 {...params} label="tags" />}
+              renderInput={(params) => (
+                <TextField1
+                  {...params}
+                  label={<TranslatedText text="tags" />}
+                />
+              )}
             />
 
             <button

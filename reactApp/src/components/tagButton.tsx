@@ -10,7 +10,10 @@ export default function TagButton(props: { tag: string }) {
     <Button
       startIcon={<TagIcon />}
       size="small"
-      onClick={() => navigate(`/tag/${tag}`)}
+      onClick={(ev) => {
+        ev.stopPropagation();
+        navigate(`/tag/${tag}`);
+      }}
     >
       {tag}
     </Button>
