@@ -39,5 +39,7 @@ export function biggestCollections(
 
   const coll1 = coll.sort((a, b) => b.length - a.length);
 
-  return coll1.splice(0, 3).map((items) => items[0].collectionId);
+  return coll1
+    .splice(0, 3)
+    .map((items) => (items[0] ? items[0].collectionId : 0));
 }
