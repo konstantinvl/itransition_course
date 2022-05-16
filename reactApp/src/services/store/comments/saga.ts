@@ -7,6 +7,7 @@ import {
   CommentInterface,
 } from '../../../common/interfaces';
 import { getComments, newComment } from '../../axios/requests';
+import { notificationSendError } from '../notification/notificationActions';
 import { setComments } from './commentsActions';
 
 export function* commentsGet() {
@@ -14,22 +15,20 @@ export function* commentsGet() {
     const comments: CommentInterface[] = yield call(getComments);
 
     yield put(setComments(comments));
-  } catch (e) {
-    yield console.log((e as Error).message);
-  }
+  } catch (e) {}
 }
 
 export function* commentSet(action: PayloadAction<CommentInterface>) {
   try {
     yield call(newComment, action.payload);
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }
 
 export function* startCommentRequesting() {
   while (true) {
     yield fork(commentsGet);
-    yield delay(5000);
+    yield delay(60000);
   }
 }

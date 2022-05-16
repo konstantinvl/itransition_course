@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { User } from '../../../common/interfaces';
 import { getUserList } from '../../axios/requests';
+import { notificationSendError } from '../notification/notificationActions';
 
 import { setUserList } from './userListActions';
 
@@ -10,7 +11,7 @@ export function* userlistGet() {
 
     yield put(setUserList(items));
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }
 

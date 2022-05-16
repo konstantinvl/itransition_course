@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { TagInterface } from '../../../common/interfaces';
 import { getTags } from '../../axios/requests';
+import { notificationSendError } from '../notification/notificationActions';
 import { setTags } from './tagsActions';
 
 export function* tagsGet() {
@@ -9,6 +10,6 @@ export function* tagsGet() {
     console.log(tags);
     yield put(setTags(tags));
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }

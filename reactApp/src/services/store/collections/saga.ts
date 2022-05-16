@@ -1,4 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { call, put } from 'redux-saga/effects';
 import {
@@ -11,6 +12,10 @@ import {
   getCollections,
   newCollection,
 } from '../../axios/requests';
+import {
+  notificationSendError,
+  notificationSendSuccess,
+} from '../notification/notificationActions';
 import { requestCollections, setCollections } from './collectionsActions';
 
 export function* collectionsGet() {
@@ -19,7 +24,7 @@ export function* collectionsGet() {
 
     yield put(setCollections(collections));
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }
 
@@ -29,8 +34,9 @@ export function* collectionSet(
   try {
     yield call(newCollection, action.payload);
     yield put(requestCollections());
+    yield put(notificationSendSuccess('collectionAdded'));
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }
 
@@ -38,8 +44,9 @@ export function* collectionChange(action: PayloadAction<CollectionInterface>) {
   try {
     yield call(changeCollection, action.payload);
     yield put(requestCollections());
+    yield put(notificationSendSuccess('changeSuccesful'));
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }
 
@@ -48,6 +55,6 @@ export function* collectionDelete(action: PayloadAction<number>) {
     yield call(deleteCollection, action.payload);
     yield put(requestCollections());
   } catch (e) {
-    yield console.log((e as Error).message);
+    yield put(notificationSendError((e as Error).message));
   }
 }

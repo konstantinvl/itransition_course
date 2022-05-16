@@ -5,6 +5,7 @@ import { enAppHeader, ruAppHeader } from './appHeaderTranlations';
 import { enCollection, ruCollection } from './collection';
 import { enCreateNew, ruCreateNew } from './createNew';
 import { enMain, ruMain } from './main';
+import { enNotification, ruNotification } from './notification';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -23,6 +24,7 @@ const resources = {
       ...enCollection,
       ...enCreateNew,
       ...enMain,
+      ...enNotification,
     },
   },
   ru: {
@@ -32,6 +34,7 @@ const resources = {
       ...ruCollection,
       ...ruCreateNew,
       ...ruMain,
+      ...ruNotification,
     },
   },
 };
