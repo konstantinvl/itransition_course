@@ -1,9 +1,4 @@
-import {
-  ForkEffect,
-  select,
-  SelectEffect,
-  takeEvery,
-} from 'redux-saga/effects';
+import { ForkEffect, takeEvery } from 'redux-saga/effects';
 import {
   REQUEST_CHANGE_COLLECTION,
   REQUEST_COLLECTIONS,

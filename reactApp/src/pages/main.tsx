@@ -21,24 +21,25 @@ export default function MainPage() {
 
   return (
     <>
-      collections && (
-      <Stack color={"primary"}>
-        <SectionMain title="biggestCollection">
-          {collections.map((collection) => (
-            <Collection collection={collection} key={collection.id} />
-          ))}
-        </SectionMain>
-        <SectionMain title="lastItems">
-          {items.map((item) => (
-            <Item item={item} key={item.id} />
-          ))}
-        </SectionMain>
-        <SectionMain title="tagList">
-          {state.tags.tags.map((tag, index) => (
-            <TagButton tag={tag.tag} key={tag.tag + index} />
-          ))}
-        </SectionMain>
-      </Stack>
+      {collections && (
+        <Stack color={"primary"}>
+          <SectionMain title="biggestCollection">
+            {collections.map((collection) => (
+              <Collection collection={collection} key={collection.id} />
+            ))}
+          </SectionMain>
+          <SectionMain title="lastItems">
+            {items.map((item) => (
+              <Item item={item} key={item.id} />
+            ))}
+          </SectionMain>
+          <SectionMain title="tagList">
+            {state.tags.tags.map((tag, index) => (
+              <TagButton tag={tag.tag} key={tag.tag + index} />
+            ))}
+          </SectionMain>
+        </Stack>
+      )}
     </>
   );
 }
