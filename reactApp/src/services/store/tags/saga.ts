@@ -7,7 +7,6 @@ import { setTags } from './tagsActions';
 export function* tagsGet() {
   try {
     const tags: TagInterface[] = yield call(getTags);
-    console.log(tags);
     yield put(setTags(tags));
   } catch (e) {
     yield put(notificationSendError((e as Error).message));

@@ -15,9 +15,12 @@ import { selectLatestItems } from "../services/store/items/itemsReduser";
 export default function MainPage() {
   const state = useAppSelector((state) => state);
   const items = selectLatestItems(state);
-  const collections = selectBiggestCollections(state).map((id) =>
-    selectCollectionByID(state, id)
-  ) as CollectionInterface[];
+  const collectionsIds = selectBiggestCollections(state);
+  const collections =
+    collectionsIds &&
+    (collectionsIds.map((id) =>
+      selectCollectionByID(state, id)
+    ) as CollectionInterface[]);
 
   return (
     <>

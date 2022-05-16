@@ -153,8 +153,6 @@ export const Item = sequelize.define<ItemModel>('item', {
   numberField3Value: { type: DataTypes.REAL },
 });
 
-User.create({ login: 'admin', password: 'admin', role: 'admin' });
-
 export const Tag = sequelize.define<TagModel>('tags', {
   tag: {
     type: DataTypes.STRING,
