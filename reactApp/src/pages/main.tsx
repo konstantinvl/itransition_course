@@ -24,7 +24,7 @@ export default function MainPage() {
 
   return (
     <>
-      {collections && (
+      {collections && items && state.tags.tags && (
         <Stack color={"primary"}>
           <SectionMain title="biggestCollection">
             {collections.map((collection) => (
