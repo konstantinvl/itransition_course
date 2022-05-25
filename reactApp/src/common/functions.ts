@@ -8,9 +8,10 @@ export function splitTags(tags: string) {
 }
 
 export function splitLikes(likes: string) {
-  if (likes) {
-    return likes.split(',').map((id) => Number(id));
-  } else return [];
+  // if (likes) {
+  //   return likes.split(',').map((id) => Number(id));
+  // } else return [];
+  return likes ? likes.split(',').map((id) => Number(id)) : [];
 }
 
 export function checkItem(item: ItemInterface, search: string) {

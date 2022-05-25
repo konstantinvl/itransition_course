@@ -8,6 +8,7 @@ import { CollectionTypes } from "../common/renderData";
 import { useAppDispatch, useAppSelector } from "../services/store/hooks";
 import { requestCreateCollection } from "../services/store/collections/collectionsActions";
 import { CollectionCreateInterface } from "../common/interfaces";
+import { useNavigate } from "react-router-dom";
 
 const CollectionSchema = Yup.object().shape({
   name: Yup.string().required(),
@@ -36,6 +37,8 @@ export default function CreateCollection() {
 
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
+
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={initialValues}
@@ -47,14 +50,11 @@ export default function CreateCollection() {
           } as CollectionCreateInterface)
         );
         actions.resetForm();
+        navigate(`/${user.id}/`);
       }}
       validationSchema={CollectionSchema}
     >
-      {({
-        handleSubmit,
-
-        /* and other goodies */
-      }) => (
+      {({ handleSubmit }) => (
         <Box
           component="form"
           sx={{ width: "70%", display: "flex" }}
